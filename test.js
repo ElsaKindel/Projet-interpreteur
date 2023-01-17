@@ -20,9 +20,9 @@ exec('ls', (error, stdout, stderr)=>{
 const util = require('node:util');
 const exec = util.promisify(require('node:child_process').exec);
 
-async function lsExample() {
+async function dirExample() {
   const { stdout, stderr } = await exec('dir');
   console.log('stdout:', stdout);
   console.error('stderr:', stderr);
 }
-lsExample();
+dirExample();
