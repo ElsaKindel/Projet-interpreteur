@@ -1,8 +1,8 @@
 {
   "name": "projet-interpreteur",
   "version": "1.0.0",
-  "description": "",
-  "main": "cli.js",
+  "description": "Nous créons un interpréteur",
+  "main": "keyboardevent.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,10 +11,14 @@
     "url": "git+https://github.com/ElsaKindel/Projet-interpreteur.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Maiwenn",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ElsaKindel/Projet-interpreteur/issues"
   },
-  "homepage": "https://github.com/ElsaKindel/Projet-interpreteur#readme"
+  "homepage": "https://github.com/ElsaKindel/Projet-interpreteur#readme",
+  "dependencies": {
+    "inquirer": "^9.1.4"
+  },
+  "type": "module"
 }

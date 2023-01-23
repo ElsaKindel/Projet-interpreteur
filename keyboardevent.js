@@ -1,14 +1,49 @@
-const readline = require('readline');
+import readline from 'readline';
+import util from 'node:util';
+import { exec } from 'child_process';
+import inquirer from 'inquirer';
+
+async function dirExample(com) {
+  exec(com, (err, stdout, stderr) => {
+    if (err) {
+      console.log("Nous avons rencontré une erreur :-(");
+    }
+    if (com=='tasklist'){
+      var encours=stdout.split(/\r\n|\r|\n/);
+      console.log(encours[1]);
+      console.log(encours[2]);
+      for (var i=1; i<encours.length; i++){
+        console.log(i+" "+encours[i+2]);
+      }
+    }else{
+      console.log(typeof stdout)
+      console.log(`stdout: ${stdout}`);
+    }
+    console.log(`stderr: ${stderr}`);
+    console.log("Rentrez votre commande ou ctrl+p pour quitter.")
+  });
+ 
+}
+
 readline.emitKeypressEvents(process.stdin);
 process.stdin.setRawMode(true);
+var quitter=0;
+
+console.log("Bienvenue dans notre interpreteur.Rentrez votre commande ou ctrl+p pour sortir");
 process.stdin.on('keypress', (str, key) => {
-  if (key.ctrl && key.name === 'c') {
+  if (key.ctrl && key.name === 'p') {
     process.exit();
-  } else {
-    console.log(`You pressed the "${str}" key`);
-    console.log();
-    console.log(key);
-    console.log();
+    quitter=1;
   }
 });
-console.log('Press any key...');
+while (quitter==0){
+  const reponse = await inquirer.prompt([{
+    name: 'input',
+  }]);
+  if(reponse.input=="lp"){
+    reponse.input="tasklist";
+  }
+  await dirExample(reponse.input);
+
+}
+

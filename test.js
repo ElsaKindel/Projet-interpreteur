@@ -17,11 +17,15 @@ exec('ls', (error, stdout, stderr)=>{
     console.error('stderr: ${stderr}');
 });
 */
+
+const prompt = require('prompt-sync')();
 const util = require('node:util');
 const exec = util.promisify(require('node:child_process').exec);
 
+let commande = prompt("Rentrez une commande :");
+
 async function dirExample() {
-  const { stdout, stderr } = await exec('dir');
+  const { stdout, stderr } = await exec(commande);
   console.log('stdout:', stdout);
   console.error('stderr:', stderr);
 }
