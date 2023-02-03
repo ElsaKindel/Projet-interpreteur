@@ -40,20 +40,22 @@ while (quitter==0){
   const reponse = await inquirer.prompt([{
     name: 'input',
   }]);
-  if(reponse.input=="lp"){
-    reponse.input="tasklist";
-  }
-  if(reponse.input.split(" ")[0]=="bing"){
-    switch(reponse.input.split(" ")[1]){
-      case "[-k]":
-        reponse.input="taskkill /PID "+reponse.input.split(" ")[2]+" /F";
+  if (reponse.input != ""){
+    if(reponse.input=="lp"){
+      reponse.input="tasklist";
     }
-  }
-  if(reponse.input.split(" ")[1]=="!"){
-    reponse.input=reponse.input.split(" ")[0]+"&";
+    if(reponse.input.split(" ")[0]=="bing"){
+      switch(reponse.input.split(" ")[1]){
+        case "[-k]":
+          reponse.input="taskkill /PID "+reponse.input.split(" ")[2]+" /F";
+      }
     }
+    if(reponse.input.split(" ")[1]=="!"){
+      reponse.input=reponse.input.split(" ")[0]+"&";
+      }
 
-  await dirExample(reponse.input);
+    await dirExample(reponse.input);
+  }
 
 }
 
